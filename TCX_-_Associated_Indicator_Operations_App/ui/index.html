@@ -42,9 +42,40 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-        <div id="app-content" v-if="visible">
-            ADD YOUR HTML CODE HERE...
+        <div class="large-11 medium-11 small-11" id="app-content" v-if="visible">
+            <!-- <div>
+                <h1>Indicators</h1>
+                <ul id="example-1">
+                  <li v-for="indicator in indicators">
+                    {{ indicator.indicator }}
+                  </li>
+                </ul>
+            </div> -->
+
+            <div>
+                <textarea id="indicatorsHidden" style="position: absolute; overflow: hidden; clip: rect(0 0 0 0); height: 1px; width: 1px; margin: -1px; padding: 0; border: 0;">{{ indicators.map(x => x['indicator']).join(',') }}</textarea>
+            </div>
+
+            <div class="float-center text-center">
+                <h1>Actions</h1>
+                <button class="button secondary" v-on:click="copyIndicators">Copy Associated Indicators</button>
+                <p>
+                    <i>Have another action you'd like to see? <a href="https://hightower.space/contact/" target="_blank">Let me know!</a></i>
+                </p>
+            </div>
+
+            <div class="float-center text-center">
+                <hr>
+                <p><a data-open="creditsModal">Credits</a></p>
+            </div>
         </div> <!-- end app-content -->
+
+        <div class="reveal" id="creditsModal" data-reveal>
+            <h1>Credits</h1>
+            <p>This app was created by <a href="https://hightower.space/" target="_blank">Floyd Hightower</a>. The source code for this app is available <a href="https://gitlab.com/fhightower-tc/associated-indicator-action-spaces-app" target="_blank">here</a>.</p>
+            <p>If you have any feedback, feel free to <a href="https://gitlab.com/fhightower-tc/associated-indicator-action-spaces-app/issues" target="_blank">raise an issue</a> or <a href="https://hightower.space/contact/" target="_blank">send Floyd feedback</a>.</p>
+            <p>If you enjoy the app, please <a href="https://saythanks.io/to/fhightower" target="_blank">say thank you</a>! It's very encouraging to know people are using this app!</p>
+        </div>
 
         <!-- App scripts here -->
         <script src="js/associatedIndicatorOperationsApp.js"></script>
