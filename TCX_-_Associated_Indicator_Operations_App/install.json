@@ -1,0 +1,20 @@
+{
+    "allowOnDemand": true,
+    "displayName": "Associated Indicator Operations App",
+    "languageVersion": "JS",
+    "params": [],
+    "programIcon": "spaces-icon-import",
+    "programLanguage": "none",
+    "programVersion": "0.1.0",
+    "runtimeContext": [
+        "Adversary",
+        "Campaign",
+        "Document",
+        "Email",
+        "Incident",
+        "Signature",
+        "Task",
+        "Threat"
+    ],
+    "runtimeLevel": "SpaceOrganization"
+}
