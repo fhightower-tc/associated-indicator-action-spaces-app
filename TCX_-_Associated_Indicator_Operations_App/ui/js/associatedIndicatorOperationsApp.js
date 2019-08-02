@@ -38,7 +38,10 @@ var ASSOCIATEDINDICATOROPERATIONSAPP = new Vue({
         },
         tcSelectedOwner: function() {
             return getParameterByName('tcSelectedItemOwner');
-        }
+        },
+        indicatorDelimiter: function() {
+            return getParameterByName("indicatorDelimiter");
+        },
     },
     methods: {
         getAssociatedIndicators: function() {

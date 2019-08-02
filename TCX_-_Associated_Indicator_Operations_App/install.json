@@ -2,7 +2,13 @@
     "allowOnDemand": true,
     "displayName": "Associated Indicator Operations App",
     "languageVersion": "JS",
-    "params": [],
+    "params": [{
+        "name": "indicatorDelimiter",
+        "label": "Delimiter to separate indicators when copying indicators associated with a group.",
+        "type": "String",
+        "default": ",",
+        "required": true
+    }],
     "programIcon": "spaces-icon-import",
     "programLanguage": "none",
     "programVersion": "0.1.0",
