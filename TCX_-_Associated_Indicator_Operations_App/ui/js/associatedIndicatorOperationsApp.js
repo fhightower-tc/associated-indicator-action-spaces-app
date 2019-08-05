@@ -1,11 +1,23 @@
 /* global window, document, console, $,  */
 'use-strict';
 
+
+// for the "slashUnescape" function below, credits to https://stackoverflow.com/questions/46252753/how-do-i-properly-escape-and-unescape-a-multiline-string-that-contains-newline-l
+var replacements = {'\\\\': '\\', '\\n': '\n', '\\"': '"'};
+
+function slashUnescape(contents) {
+    return contents.replace(/\\(\\|n|")/g, function(replace) {
+        return replacements[replace];
+    });
+}
+
+
 var ASSOCIATEDINDICATOROPERATIONSAPP = new Vue({
     el: '#app-content',
     data: {
         visible: false,
-        indicators: []
+        indicatorDataComplete: [],
+        indicatorsForCopy: ''
     },
     computed: {
         tc: function () {
@@ -40,7 +52,9 @@ var ASSOCIATEDINDICATOROPERATIONSAPP = new Vue({
             return getParameterByName('tcSelectedItemOwner');
         },
         indicatorDelimiter: function() {
-            return getParameterByName("indicatorDelimiter");
+            var delimiter = getParameterByName("indicatorDelimiter");
+            delimiter = slashUnescape(delimiter);
+            return delimiter;
         },
     },
     methods: {
@@ -54,7 +68,8 @@ var ASSOCIATEDINDICATOROPERATIONSAPP = new Vue({
                 .resultLimit(500)
                 .done(function(response) {
                     var associatedIndicators = response['data'];
-                    _this.indicators = associatedIndicators
+                    _this.indicatorDataComplete = associatedIndicators;
+                    _this.indicatorsForCopy = _this.indicatorDataComplete.map(x => x['indicator']).join(_this.indicatorDelimiter);
                 })
                 .error(function(response) {
                     // TODO: make this a growl
