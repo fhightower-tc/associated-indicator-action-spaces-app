@@ -60,12 +60,21 @@ var ASSOCIATEDINDICATOROPERATIONSAPP = new Vue({
     methods: {
         getAssociatedIndicators: function() {
             var _this = this;
-
+            
+            /*
+            filter on active + inactive indicators
+            https://docs.threatconnect.com/en/latest/javascript/javascript_sdk.html#filters
+            */
+            indicatorStatusFilter = new Filter(FILTER.OR);
+            indicatorStatusFilter.on('active', FILTER.EQ, 'true');
+            indicatorStatusFilter.on('active', FILTER.EQ, 'false');
+            
             groups = this.tc.groups()
             groups.owner(this.tcSelectedOwner)
                 .type(TYPE[this.tcSimpleType.toUpperCase()])
                 .id(this.tcSelectedItem)
                 .resultLimit(500)
+                .filter(indicatorStatusFilter)
                 .done(function(response) {
                     var associatedIndicators = response['data'];
                     _this.indicatorDataComplete = associatedIndicators;
